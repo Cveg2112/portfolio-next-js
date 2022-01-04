@@ -1,0 +1,38 @@
+.GlitchText {
+  --glitch-blue: #00fffc;
+  --glitch-pink: #fc00ff;
+  --glitch-black: #000000;
+  position: relative;
+  animation: glitch 300ms infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 var(--glitch-blue), -0.03em -0.04em 0 var(--glitch-pink),
+      0.025em 0.04em 0 var(--glitch-black);
+  }
+  15% {
+    text-shadow: 0.05em 0 0 var(--glitch-blue), -0.03em -0.04em 0 var(--glitch-pink),
+      0.025em 0.04em 0 var(--glitch-black);
+  }
+  16% {
+    text-shadow: -0.05em -0.025em 0 var(--glitch-blue), 0.025em 0.035em 0 var(--glitch-pink),
+      -0.05em -0.05em 0 var(--glitch-black);
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 var(--glitch-blue), 0.025em 0.035em 0 var(--glitch-pink),
+      -0.05em -0.05em 0 var(--glitch-black);
+  }
+  50% {
+    text-shadow: 0.05em 0.035em 0 var(--glitch-blue), 0.03em 0 0 var(--glitch-pink),
+      0 -0.04em 0 var(--glitch-black);
+  }
+  99% {
+    text-shadow: 0.05em 0.035em 0 var(--glitch-blue), 0.03em 0 0 var(--glitch-pink),
+      0 -0.04em 0 var(--glitch-black);
+  }
+  100% {
+    text-shadow: -0.05em 0 0 var(--glitch-blue), -0.025em -0.04em 0 var(--glitch-pink),
+      -0.04em -0.025em 0 var(--glitch-black);
+  }
+}
