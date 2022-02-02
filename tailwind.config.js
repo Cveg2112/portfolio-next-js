@@ -3,8 +3,8 @@ const colors = {
   'primary-dark' : '#3d0808',
   'secondary' : '#ffffff',
   'secondary-dark' : '#efefef',
-  'tertiary' : '#000000',
-  'tertiary-light' : '#101010',
+  'tertiary' : '#171717',
+  'tertiary-light' : '#272727',
 }
 
 module.exports = {

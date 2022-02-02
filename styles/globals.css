@@ -2,7 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: 'Cairo', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   @apply bg-tertiary
 }
@@ -10,6 +10,23 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+p, a, ul, ol, table {
+  font-family: 'Cairo';
+  @apply text-lg;
+}
+
+p {
+  margin-bottom: 0.6em!important;
+}
+
+p:last-of-type {
+  margin-bottom: 0em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Vim';
 }
 
 * {
@@ -30,10 +47,6 @@ a {
   url('../public/fonts/vimsm-webfont.svg') format('svg');
 }
 
-@font-face {
-  font-family: 'Cairo';
-  src: url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
-}
 
 @keyframes glitch {
   0% {

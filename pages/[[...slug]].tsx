@@ -1,6 +1,8 @@
 import { HeroImage } from "../components/flex/hero-image";
+import { CopyBlock } from "../components/flex/copy-block";
 import { HomeBlock } from "../components/flex/home-block";
 import { Client } from '../prismicConfiguration';
+
 const Prismic = require('@prismicio/client');
 
 export default function Pages(props:any) {
@@ -11,9 +13,9 @@ export default function Pages(props:any) {
       case 'homepage_block':
         return (
           <HomeBlock
-            key={'-' + flex.slice_type}
-            title={flex?.primary?.title}
-            subtitle={flex?.primary?.subtitle}
+            key={key + '-' + flex.slice_type}
+            title={flex?.primary?.title[0].text}
+            subtitle={flex?.primary?.subtitle[0].text}
             copy={flex?.primary?.copy}
             buttons={flex?.items}
           />
@@ -29,14 +31,21 @@ export default function Pages(props:any) {
         //   />
         // );
       case 'copy_block':
-        return 'Copy_Block';
+        console.log(flex)
+        return (
+          <CopyBlock
+            key={key + '-' + flex.slice_type}
+            title={flex?.primary?.heading[0].text}
+            copy={flex?.primary?.copy}
+          />
+        );
       default: 
         return 'No flexible fields chosen.';
     }
   });
 
   return (
-    <div>
+    <div className="pt-20">
       {flexComponents}
     </div>
   )
@@ -62,12 +71,10 @@ export async function getStaticProps(context:any) {
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
   const pages = await Client.query(Prismic.Predicates.at('document.type', 'pages'), { lang: '*' })
-  
   // Get the paths we want to pre-render based on posts
   const paths = pages?.results?.map((page:any) => ({
     params: { slug: [page.uid] },
   }))
-
   // We'll pre-render only these paths at build time.
   return { paths, fallback: false }
 }
