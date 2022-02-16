@@ -34,10 +34,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .developerText {
-  animation: glitch 2s infinite;
-  letter-spacing: .5em!important;
-  text-shadow: 0 0 10px #f72119;
-  font-weight: 300;
+  letter-spacing: .15em!important;
+  text-shadow: 0 0 2px #f72119;
 }
 
 @font-face {
@@ -70,4 +68,29 @@ h1, h2, h3, h4, h5, h6 {
   100% {
     text-shadow: 0 0 8px #f72119;
   }
+}
+
+
+/* BUTTONS */
+
+.btn {
+  border: 1px solid;
+  @apply px-6 py-2 border-primary text-secondary;
+}
+
+.btn-primary {
+  @apply bg-primary text-secondary;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  @apply transition duration-300 ease-in-out;
+}
+
+.btn-primary-outline {
+  @apply border-primary text-secondary;
+}
+
+.btn-primary-outline:hover {
+  @apply bg-primary transition duration-300 ease-in-out;
 }

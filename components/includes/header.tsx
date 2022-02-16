@@ -29,14 +29,14 @@ export function Header({navItems}: HeaderProps){
   });
 
   return (
-    <header className="border-b border-primary mx-2 md:mx-8 xl:mx-16 my-4 fixed top-0 inset-x-0">
+    <header className="border-b border-primary mx-2 md:mx-8 xl:mx-16 my-4 fixed top-0 inset-x-0 z-30">
       <div className="flex flex-row items-center justify-between">
         {/* Logo */}
         <Link href="/home">
-          <a href="/home">
+          <span>
             <p className="sr-only">Conor Morrison Logo, back to homepage</p>
             <Logo className="w-64 cursor-pointer" />
-          </a>
+          </span>
         </Link>
         
         {/* Main Navigation */}
@@ -82,7 +82,7 @@ function NavItem({currentPage, pageName, pageSlug}: NavItemProps){
   const [menuActive, setMenuActive] = useState(false);
   const active = (currentPage == pageSlug ) ? '' : '';
   const hoverClasses = '';
-  const activeClasses = 'py-3 px-24';
+  const activeClasses = 'py-3 px-20';
   const inactiveClasses = '';
   return (
     <li 
@@ -96,17 +96,17 @@ function NavItem({currentPage, pageName, pageSlug}: NavItemProps){
     >
       <Link href={'/' + pageSlug}>
         <a className={cx(
-          "inline-block relative px-16 py-3 mx-2 border-t border-l border-r border-primary font-body text-xl text-secondary uppercase transition-all duration-150 transform origin-bottom",
+          "inline-block relative px-14 py-3 mx-2 border-t border-l border-r border-primary font-body text-xl text-secondary uppercase transition-all duration-150 transform origin-bottom",
           menuActive ? hoverClasses : inactiveClasses,
           currentPage == pageSlug ? activeClasses : inactiveClasses, 
         )}
         >
           <div 
             style={{
-              width: 'calc(100% - 6px)',
+              width: '20px',
               height: 'calc(100% - 6px)'
             }}
-            className={cx("w-full h-full absolute inset-0 m-auto bg-primary transform z-10 transition-all duration-300 ease-in-out",
+            className={cx("w-full h-full absolute inset-0 ml-1 my-auto bg-primary transform z-10 transition-all duration-300 ease-in-out",
               (menuActive || currentPage == pageSlug) ? 'opacity-1 scale-100 ' : 'opacity-0 scale-95',
             )}
           ></div>

@@ -11,12 +11,15 @@ export default function Pages(props:any) {
   const flexComponents = pageBody?.map((flex: any, key: string | number) => {
     switch(flex?.slice_type){
       case 'homepage_block':
+        console.log(flex?.primary)
         return (
           <HomeBlock
             key={key + '-' + flex.slice_type}
             title={flex?.primary?.title[0].text}
             subtitle={flex?.primary?.subtitle[0].text}
             copy={flex?.primary?.copy}
+            bgVideo={flex?.primary?.background_video?.embed_url}
+            bgAnimations={flex?.primary?.background_animation}
             buttons={flex?.items}
           />
         );
@@ -31,7 +34,6 @@ export default function Pages(props:any) {
         //   />
         // );
       case 'copy_block':
-        console.log(flex)
         return (
           <CopyBlock
             key={key + '-' + flex.slice_type}
@@ -45,7 +47,7 @@ export default function Pages(props:any) {
   });
 
   return (
-    <div className="pt-20">
+    <div className="">
       {flexComponents}
     </div>
   )

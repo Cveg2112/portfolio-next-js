@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="preconnect" href="https://fonts.gstatic.com"/>
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;700&display=swap" rel="stylesheet"></link>
       </Head>
-       <Header
+      <Header
         navItems={pageProps.nav.results[0].data.nav_items}
       />
       <Component {...pageProps} />
