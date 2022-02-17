@@ -60,6 +60,12 @@ export async function getStaticProps(context) {
   // get a page based on path
   const page = await Client.query(Prismic.Predicates.at('my.pages.uid', context.params.slug[0]), { lang: '*' })
 
+  if (!page) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: {
       nav,
