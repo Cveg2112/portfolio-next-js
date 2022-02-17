@@ -6,7 +6,7 @@ import { Client } from '../prismicConfiguration';
 const Prismic = require('@prismicio/client');
 
 export default function Pages(props:any) {
-  const currentPage = props.page.results[0];
+  const currentPage = props?.page?.results[0];
   const pageBody = currentPage?.data?.body;
   const flexComponents = pageBody?.map((flex: any, key: string | number) => {
     switch(flex?.slice_type){
