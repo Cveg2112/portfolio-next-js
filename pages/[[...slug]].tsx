@@ -11,7 +11,6 @@ export default function Pages(props:any) {
   const flexComponents = pageBody?.map((flex: any, key: string | number) => {
     switch(flex?.slice_type){
       case 'homepage_block':
-        console.log(flex?.primary)
         return (
           <HomeBlock
             key={key + '-' + flex.slice_type}
@@ -53,7 +52,7 @@ export default function Pages(props:any) {
   )
 }
 
-export async function getStaticProps(context:any) {
+export async function getStaticProps(context) {
   // get all navigation types
   const nav = await Client.query(Prismic.Predicates.at('document.type', 'navigation'), { lang: '*' })
   // get all page types
@@ -74,8 +73,8 @@ export async function getStaticPaths() {
   // Call an external API endpoint to get posts
   const pages = await Client.query(Prismic.Predicates.at('document.type', 'pages'), { lang: '*' })
   // Get the paths we want to pre-render based on posts
-  const paths = pages?.results?.map((page:any) => ({
-    params: { slug: [page.uid] },
+  const paths = await pages?.results?.map((page:any) => ({
+    params: { slug: [page?.uid] },
   }))
   // We'll pre-render only these paths at build time.
   return { paths, fallback: false }
