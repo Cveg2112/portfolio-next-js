@@ -79,8 +79,8 @@ export async function getStaticPaths() {
   // Call an external API endpoint to get posts
   const pages = await Client.query(Prismic.Predicates.at('document.type', 'pages'), { lang: '*' })
   // Get the paths we want to pre-render based on posts
-  const paths = await pages?.results?.map((page:any) => ({
-    params: { slug: [page?.uid] },
+  const paths = await pages.results.map((page:any) => ({
+    params: { slug: [page.uid] },
   }))
   // We'll pre-render only these paths at build time.
   return { paths, fallback: false }
