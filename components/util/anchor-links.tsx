@@ -15,10 +15,10 @@ export function AnchorLinks(props: LinkProps){
   const classNames = `inline-block btn btn-${props?.styles || 'primary-outline'} mx-1`
   switch(props.link_type){
     case 'Web': 
-      finalLink = <a className={classNames} href={`${props?.url}`} target={props?.target}>{props?.text}</a>
+      finalLink = <a className={classNames} href={`${props?.url}`} target={props?.target}><span>{props?.text}</span></a>
       break;
     case 'Document': 
-      finalLink = <Link href={`/${props?.slug}`}><a className={classNames}>{props?.text}</a></Link>
+      finalLink = <Link href={`/${props?.slug}`}><a className={classNames}><span>{props?.text}</span></a></Link>
       break;
   }
 

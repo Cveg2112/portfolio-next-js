@@ -5,7 +5,7 @@ import { linkResolver } from '../util/helpers';
 import { HorizontalRule } from '../includes/atoms/horizontal-rule';
 import { AnchorLinks } from '../util/anchor-links';
 import { YoutubeEmbed } from '../util/youtube-embeds';
-import { BackgroundAnimations, AnimationTypes } from '../includes/background-animations';
+import { BackgroundAnimations } from '../includes/background-animations';
 
 interface HomeProps {
   title?: string;
@@ -13,7 +13,7 @@ interface HomeProps {
   copy?: RichTextBlock[];
   bgVideo?: string;
   bgImage?: any;
-  bgAnimations?: AnimationTypes;
+  bgAnimations?: string;
   buttons?: any;
 }
 
@@ -30,13 +30,10 @@ export function HomeBlock(props: HomeProps){
         />
       : null }
 
-      {props?.bgAnimations ? 
-        <BackgroundAnimations 
-          type="binary"
-          wordList={['Conor', 'Jobby', 'Arse', 'Elwood', 'Poo', 'Cunt']}
-        />
-      : null}
-
+      {/* <BackgroundAnimations 
+        type="circles"
+      /> */}
+      
       <div className="h-screen flex flex-col items-center justify-center text-center m-auto relative z-1">
         <Logo className="w-full inline-block max-w-screen-lg" />
         <HeadingStyle 

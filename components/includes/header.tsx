@@ -103,11 +103,11 @@ function NavItem({currentPage, pageName, pageSlug}: NavItemProps){
         >
           <div 
             style={{
-              width: '20px',
+              width: 'calc(100% - 6px)',
               height: 'calc(100% - 6px)'
             }}
-            className={cx("w-full h-full absolute inset-0 ml-1 my-auto bg-primary transform z-10 transition-all duration-300 ease-in-out",
-              (menuActive || currentPage == pageSlug) ? 'opacity-1 scale-100 ' : 'opacity-0 scale-95',
+            className={cx("w-full h-full absolute inset-0 mx-auto my-auto bg-primary transform z-10 transition-all duration-200 ease-in-out",
+              (menuActive || currentPage == pageSlug) ? 'opacity-1 translate-y-0' : 'opacity-0 -translate-y-full',
             )}
           ></div>
           <span className={cx("relative z-10", menuActive ? styles.GlitchText : '')}>{pageName}</span>

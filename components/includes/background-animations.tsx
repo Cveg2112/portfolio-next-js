@@ -1,28 +1,18 @@
 import { useRef, useEffect } from 'react';
-import { 
-  convertTextToBinary, 
+import {  
   getRandomInt 
 } from '../util/helpers';
 
 interface CommonProps {
-  type: 'binary' | 'poly' | 'neon' | 'retro' | 'futuristic';
+  type: 'circles';
 }
 
-export interface AnimationTypes {
-  type: 'binary' | 'poly' | 'neon' | 'retro' | 'futuristic';
-}
-
-type BinaryProps = 
-  | { type: 'binary'; wordList?: string[]; }
-  | { type: 'poly' | 'neon' | 'retro' | 'futuristic'; wordList: never; }
-
-type Props = CommonProps & BinaryProps;
-
-export function BackgroundAnimations(props: Props){
+export function BackgroundAnimations(props: CommonProps){
+  
   let finalAnimation;
   switch(props.type){
-    case 'binary':
-      finalAnimation = <BinaryCanvas wordList={props?.wordList} />
+    case 'circles':
+      finalAnimation = <CircleCanvas />
   }
   return <>{finalAnimation}</>
 }
@@ -33,26 +23,43 @@ export function BackgroundAnimations(props: Props){
  * and then spits them out into a canvas at a random place and size
  */
 
-interface BinaryCanvasProps {
-  wordList?: string[];
+function CircleCanvas(props){
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  
+
+  function getRandomNumberBetween(min,max){
+    return Math.floor(Math.random()*(max-min+1)+min);
 }
 
-function BinaryCanvas(props: BinaryCanvasProps){
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const positionShapes = (context, canvas) => {
+    const circleCount = getRandomNumberBetween(25, 50);
+    for( let i = 0; i < circleCount; i++ ){
+      const radiusArray = ['20', '25', '30', '35', '40', '45', '50', '55', '60'];
+      const randomSize = radiusArray[Math.floor(Math.random()*radiusArray.length)];
+      const opacityArray = [0.1, 0.2, 0.3, 0.4, 0.5];
+      context.beginPath();
+      context.arc(getRandomInt(0, canvas.width), getRandomInt(0, canvas.height), randomSize, 0, 2 * Math.PI, false);
+      context.fillStyle = 'transparent';
+      context.globalAlpha = opacityArray[Math.floor(Math.random()*radiusArray.length)];
+      context.fill();
+      context.lineWidth = 1;
+      context.strokeStyle = '#f72119';
+      context.stroke();
+    }
 
-  const positionWords = (context:any, canvas:any) => {
-    props?.wordList?.map((word) => {
-      convertTextToBinary(word)
-      const fontSizeArray = ['18px', '24px', '30px', '36px', '42px', '48px'];
-      const randomFontSize = fontSizeArray[Math.floor(Math.random()*fontSizeArray.length)];
-      context.font = `bold ${randomFontSize} Cairo`; 
-      context.fillStyle = 'rgba(247, 33, 25, .4)';
-      context.fillText(
-        convertTextToBinary(word), 
-        getRandomInt(0, canvas.width), 
-        getRandomInt(0, canvas.height)
-      );
-    });
+    // props?.wordList?.map((word) => {
+    //   convertTextToBinary(word)
+    //   const fontSizeArray = ['18px', '24px', '30px', '36px', '42px', '48px'];
+    //   const randomFontSize = fontSizeArray[Math.floor(Math.random()*fontSizeArray.length)];
+    //   const binary = convertTextToBinary(word).toString();
+    //   context.font = `bold ${randomFontSize} Cairo`; 
+    //   context.fillStyle = 'rgba(247, 33, 25, .4)';
+    //   context.fillText(
+    //     binary, 
+    //     getRandomInt(0, canvas.width), 
+    //     getRandomInt(0, canvas.height)
+    //   );
+    // });
   }
 
   useEffect(() => {
@@ -60,7 +67,7 @@ function BinaryCanvas(props: BinaryCanvasProps){
     const context:any = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    positionWords(context, canvas)
+    positionShapes(context, canvas)
   });
 
   return (

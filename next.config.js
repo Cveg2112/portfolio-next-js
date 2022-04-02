@@ -4,4 +4,13 @@ module.exports = {
   images: {
     domains: ['localhost'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: true,
+      },
+    ]
+  },
 }

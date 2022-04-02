@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Header } from '../components/includes/header';
 import { Footer } from '../components/includes/footer';
+import { AnimatePresence } from 'framer-motion'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const pageResults = pageProps?.page?.results[0];
@@ -19,7 +20,12 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Header
         navItems={pageProps?.nav?.results[0]?.data?.nav_items}
       />
-      <Component {...pageProps} />
+      <AnimatePresence
+        exitBeforeEnter
+        onExitComplete={() => window.scrollTo(0, 0)}
+      >
+        <Component {...pageProps} />
+      </AnimatePresence>
       <Footer />
     </>
   );

@@ -2,6 +2,7 @@ import { HeroImage } from "../components/flex/hero-image";
 import { CopyBlock } from "../components/flex/copy-block";
 import { HomeBlock } from "../components/flex/home-block";
 import { Client } from '../prismicConfiguration';
+import { PageTransition } from "../components/HOC/page-transition";
 
 const Prismic = require('@prismicio/client');
 
@@ -12,15 +13,17 @@ export default function Pages(props:any) {
     switch(flex?.slice_type){
       case 'homepage_block':
         return (
-          <HomeBlock
-            key={key + '-' + flex.slice_type}
-            title={flex?.primary?.title[0].text}
-            subtitle={flex?.primary?.subtitle[0].text}
-            copy={flex?.primary?.copy}
-            bgVideo={flex?.primary?.background_video?.embed_url}
-            bgAnimations={flex?.primary?.background_animation}
-            buttons={flex?.items}
-          />
+          <PageTransition>
+            <HomeBlock
+              key={key + '-' + flex.slice_type}
+              title={flex?.primary?.title[0].text}
+              subtitle={flex?.primary?.subtitle[0].text}
+              copy={flex?.primary?.copy}
+              bgVideo={flex?.primary?.background_video?.embed_url}
+              bgAnimations="circles" 
+              buttons={flex?.items}
+            />
+          </PageTransition>
         );
       case 'hero_image':
         return 'Hero_Image';
@@ -34,11 +37,13 @@ export default function Pages(props:any) {
         // );
       case 'copy_block':
         return (
-          <CopyBlock
-            key={key + '-' + flex.slice_type}
-            title={flex?.primary?.heading[0].text}
-            copy={flex?.primary?.copy}
-          />
+          <PageTransition>
+            <CopyBlock
+              key={key + '-' + flex.slice_type}
+              title={flex?.primary?.heading[0].text}
+              copy={flex?.primary?.copy}
+            />
+          </PageTransition>
         );
       default: 
         return 'No flexible fields chosen.';
@@ -46,9 +51,9 @@ export default function Pages(props:any) {
   });
 
   return (
-    <div className="">
+    <main id="main">
       {flexComponents}
-    </div>
+    </main>
   )
 }
 
