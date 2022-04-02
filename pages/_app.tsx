@@ -5,8 +5,10 @@ import Head from 'next/head'
 import { Header } from '../components/includes/header';
 import { Footer } from '../components/includes/footer';
 import { AnimatePresence } from 'framer-motion'
+import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   const pageResults = pageProps?.page?.results[0];
   return (
     <>
@@ -22,9 +24,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       />
       <AnimatePresence
         exitBeforeEnter
-        onExitComplete={() => window.scrollTo(0, 0)}
+        // initial={false}
+        // onExitComplete={() => window.scrollTo(0, 0)}
       >
-        <Component {...pageProps} />
+        <Component key={router.asPath} {...pageProps} />
       </AnimatePresence>
       <Footer />
     </>
