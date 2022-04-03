@@ -9,9 +9,9 @@ interface HeadingProps {
 export function HeadingStyle({tag, text, className}: HeadingProps){
 
   const headingStyles = 'font-light font-header text-primary';
-  const h1Styles = 'text-5xl';
-  const h2Styles = 'text-4xl';
-  const h3Styles = 'text-2xl';
+  const h1Styles = 'md:text-3xl lg:text-5xl';
+  const h2Styles = 'md:text-2xl lg:text-4xl';
+  const h3Styles = 'md:text-xl lg:text-2xl';
   let heading;
 
   switch(tag){

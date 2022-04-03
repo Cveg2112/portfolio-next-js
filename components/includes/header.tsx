@@ -2,8 +2,7 @@ import Link from 'next/link';
 import route from 'next/router'
 import { useEffect, useState } from 'react';
 import cx from 'classnames';
-import { Logo } from '../../assets/icons/logo';
-import { GithubLogo } from '../../assets/icons/github-icon';
+import { Logo, GithubLogo, MobileMenuIcon } from '../../assets/icons';
 import styles from '../../styles/Btn.module.css';
 
 interface HeaderProps {
@@ -24,6 +23,8 @@ interface HeaderProps {
 
 export function Header({navItems}: HeaderProps){
   const [currentPage, setCurrentPage] = useState<string | undefined>();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const mobileClasses = 'bg-tertiary flex-col  fixed left-0 top-0 h-screen w-full'
   useEffect(() => {
     setCurrentPage(route.router?.asPath.replace('/', ''));
   });
@@ -41,20 +42,30 @@ export function Header({navItems}: HeaderProps){
         
         {/* Main Navigation */}
         {navItems ? 
-          <nav className={``}>
-            <ul className="flex justify-end">
-              {navItems?.map(item => {
-                return (
-                  <NavItem
-                    key={item.item_link.id}
-                    currentPage={currentPage}
-                    pageName={item.item_name[0].text}
-                    pageSlug={item.item_link?.uid || item.item_link?.slug}
-                  />
-                );
-              })}
-            </ul>
-          </nav>
+          <>
+            <button className="flex lg:hidden w-14 h-14 ml-auto p-2.5 relative z-20"
+              onClick={() => mobileMenuOpen ? setMobileMenuOpen(false) : setMobileMenuOpen(true)}
+            >
+              <MobileMenuIcon isClicked={mobileMenuOpen} />
+            </button>
+            <nav className={cx(
+              `${mobileMenuOpen ? 'flex' : 'hidden'}`, 
+              `${mobileClasses} z-10 items-center justify-center lg:flex lg:flex-row lg:relative lg:h-auto lg:w-auto lg:bg-transparent`
+            )}>
+              <ul className="flex flex-col items-center lg:flex-row lg:justify-end">
+                {navItems?.map(item => {
+                  return (
+                    <NavItem
+                      key={item.item_link.id}
+                      currentPage={currentPage}
+                      pageName={item.item_name[0].text}
+                      pageSlug={item.item_link?.uid || item.item_link?.slug}
+                    />
+                  );
+                })}
+              </ul>
+            </nav>
+          </>
           : null
         }
 
@@ -96,7 +107,8 @@ function NavItem({currentPage, pageName, pageSlug}: NavItemProps){
     >
       <Link href={'/' + pageSlug}>
         <a className={cx(
-          "inline-block relative px-14 py-3 mx-2 border-t border-l border-r border-primary font-body text-xl text-secondary uppercase transition-all duration-150 transform origin-bottom",
+          "border-b my-2 lg:my-0 w-56 text-center text-2xl lg:text-lg",
+          "inline-block relative px-14 py-3 mx-2 lg:border-b-0 border-t border-l border-r border-primary font-body text-xl text-secondary uppercase transition-all duration-150 transform origin-bottom",
           menuActive ? hoverClasses : inactiveClasses,
           currentPage == pageSlug ? activeClasses : inactiveClasses, 
         )}

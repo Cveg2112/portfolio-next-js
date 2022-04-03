@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react"
+
 export const linkResolver = (doc:any) => {
   // URL for a category type
   if (doc.type === 'category') {
@@ -26,6 +28,34 @@ export function convertTextToBinary(text: string){
   return binaryText;
 }
 
+// random integer
 export const getRandomInt = (min:number, max:number) => {
   return Math.random() * (max - min) + min;
+}
+
+// use window dimensions
+export function useWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState({
+    width: 0,
+    height: 0
+  });
+
+  useEffect(() => {
+    setWindowDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+    
+    function handleResize() {
+      setWindowDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowDimensions;
 }

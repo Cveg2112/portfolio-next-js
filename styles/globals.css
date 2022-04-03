@@ -75,7 +75,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn {
   border: 1px solid;
-  @apply relative px-6 py-2 border-primary text-secondary overflow-hidden;
+  @apply relative px-2 py-1.5 border-primary text-secondary overflow-hidden;
+}
+
+@screen md {
+  .btn {
+    @apply px-6 py-2;
+  }
 }
 
 .btn > span {

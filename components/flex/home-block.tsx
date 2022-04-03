@@ -1,7 +1,7 @@
 import { Logo } from '../../assets/icons/logo';
 import { HeadingStyle } from '../util/heading-style';
 import { RichText, RichTextBlock } from 'prismic-reactjs';
-import { linkResolver } from '../util/helpers';
+import { linkResolver, useWindowDimensions } from '../util/helpers';
 import { HorizontalRule } from '../includes/atoms/horizontal-rule';
 import { AnchorLinks } from '../util/anchor-links';
 import { YoutubeEmbed } from '../util/youtube-embeds';
@@ -34,37 +34,37 @@ export function HomeBlock(props: HomeProps){
         type="circles"
       /> */}
       
-      <div className="h-screen flex flex-col items-center justify-center text-center m-auto relative z-1">
-        <Logo className="w-full inline-block max-w-screen-lg" />
-        <HeadingStyle 
-          tag="h1"
-          text={props?.title}
-          className="developerText text-5xl text-secondary uppercase font-body sr-only"
-        />
-        <HeadingStyle 
-          tag="h2"
-          text={props?.subtitle}
-          className="developerText lg:text-3xl text-secondary uppercase font-body font-bold"
-        />
-        <HorizontalRule />
-        <div className="text-secondary max-w-xl w-full mx-auto">
-          <RichText 
-            render={props?.copy}
-            linkResolver={linkResolver}
+      <div className="h-screen flex flex-col items-center justify-center text-center m-auto relative z-1 px-2">
+          <Logo className="w-full inline-block max-w-screen-lg" />
+          <HeadingStyle 
+            tag="h1"
+            text={props?.title}
+            className="developerText text-5xl text-secondary uppercase font-body sr-only"
           />
-          <div className="my-6">
-            {props?.buttons.map((link: any, key: string) => {
-              return (
-                <AnchorLinks 
-                  key={key}
-                  text={link?.cta_text[0]?.text}
-                  styles={link?.cta_style}
-                  {...link?.cta_link}
-                />
-              );
-            })}
+          <HeadingStyle 
+            tag="h2"
+            text={props?.subtitle}
+            className="developerText lg:text-3xl text-secondary uppercase font-body font-bold"
+          />
+          <HorizontalRule />
+          <div className="text-secondary max-w-xl w-full mx-auto">
+            <RichText 
+              render={props?.copy}
+              linkResolver={linkResolver}
+            />
+            <div className="my-6">
+              {props?.buttons.map((link: any, key: string) => {
+                return (
+                  <AnchorLinks 
+                    key={key}
+                    text={link?.cta_text[0]?.text}
+                    styles={link?.cta_style}
+                    {...link?.cta_link}
+                  />
+                );
+              })}
+            </div>
           </div>
-        </div>
       </div>
     </section>
   );
