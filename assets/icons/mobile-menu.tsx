@@ -28,7 +28,6 @@ export function MobileMenuIcon({fillColor, isClicked}: MenuSVGProps){
   const lineGroup = {
     inactive: { 
       rotateZ: '-90deg', 
-      scale: .8, 
       opacity: 0, 
       transition: { 
         duration: .8, 
@@ -38,7 +37,6 @@ export function MobileMenuIcon({fillColor, isClicked}: MenuSVGProps){
     },
     active: { 
       rotateZ: '0deg', 
-      scale: 1, 
       opacity: 1, 
       transition: { 
         duration: .8, 
@@ -55,26 +53,23 @@ export function MobileMenuIcon({fillColor, isClicked}: MenuSVGProps){
           fill={color} 
           cx="3.85" 
           cy="16.85" 
-          r="3.5" 
+          r="2.8" 
           variants={circleVariants} 
           animate={isClicked ? 'active' : 'inactive'} 
-          style={{scale: 0.85}}
         />
         <motion.circle 
           fill={color} 
           cx="16.85" 
           cy="16.85" 
-          r="3.5"
-          style={{scale: 0.85}}
+          r="2.8"
         />
         <motion.circle 
           fill={color} 
           cx="29.85" 
           cy="16.85" 
-          r="3.5" 
+          r="2.8" 
           variants={circleVariants} 
           animate={isClicked ? 'active' : 'inactive'} 
-          style={{scale: 0.85}}
         />
       </motion.g>
       <motion.g variants={lineGroup} animate={isClicked ? 'active' : 'inactive'}>

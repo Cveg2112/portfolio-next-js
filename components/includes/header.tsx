@@ -24,7 +24,7 @@ interface HeaderProps {
 export function Header({navItems}: HeaderProps){
   const [currentPage, setCurrentPage] = useState<string | undefined>();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const mobileClasses = 'bg-tertiary flex-col  fixed left-0 top-0 h-screen w-full'
+  const mobileClasses = 'flex-col fixed left-0 top-0 h-screen w-full'
   useEffect(() => {
     setCurrentPage(route.router?.asPath.replace('/', ''));
   });
@@ -52,6 +52,9 @@ export function Header({navItems}: HeaderProps){
               `${mobileMenuOpen ? 'flex' : 'hidden'}`, 
               `${mobileClasses} z-10 items-center justify-center lg:flex lg:flex-row lg:relative lg:h-auto lg:w-auto lg:bg-transparent`
             )}>
+              {mobileMenuOpen  ?
+                <div className="bg-tertiary h-screen w-screen absolute left-0 top-0 opacity-95"></div>
+              : null }
               <ul className="flex flex-col items-center lg:flex-row lg:justify-end">
                 {navItems?.map(item => {
                   return (

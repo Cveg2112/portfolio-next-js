@@ -6,6 +6,7 @@ import { Header } from '../components/includes/header';
 import { Footer } from '../components/includes/footer';
 import { AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/router';
+import { SlowRedParticles } from '../components/includes/particles';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -22,6 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Header
         navItems={pageProps?.nav?.results[0]?.data?.nav_items}
       />
+      <SlowRedParticles />
       <AnimatePresence
         exitBeforeEnter
         // initial={false}

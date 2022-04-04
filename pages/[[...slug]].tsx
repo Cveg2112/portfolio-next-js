@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 const Prismic = require('@prismicio/client');
 
 export default function Pages(props) {
-  const router = useRouter();
   const currentPage = props?.page?.results[0];
   const pageBody = currentPage?.data?.body;
   const flexComponents = pageBody?.map((flex: any, key: string | number) => {
