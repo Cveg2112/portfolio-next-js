@@ -4,6 +4,6 @@
     "react/no-unescaped-entities": "off",
     "react/jsx-key": "off",
     "@next/next/no-page-custom-font": "off",
-    "@next/next/no-html-link-for-pages": ["warning", "packages/my-app/pages/"]
+    "@next/next/no-html-link-for-pages": ["warn"]
   }
 }
