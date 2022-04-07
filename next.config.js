@@ -2,7 +2,7 @@ module.exports = {
   reactStrictMode: true,
   trailingSlash: true,
   images: {
-    domains: ['localhost'],
+    domains: ['localhost', 'images.prismic.io'],
   },
   async redirects() {
     return [

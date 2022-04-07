@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 
 export const linkResolver = (doc:any) => {
   // URL for a category type
@@ -58,4 +58,15 @@ export function useWindowDimensions() {
   }, []);
 
   return windowDimensions;
+}
+
+/**
+ * useToggle
+ */
+export default function useToggle(initialValue = false) {
+  const [value, setValue] = useState(initialValue);
+  const toggle = useCallback(() => {
+    setValue(v => !v);
+  }, []);
+  return [value, toggle];
 }

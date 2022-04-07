@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 const Prismic = require('@prismicio/client');
 
 export default function Pages(props) {
+  // console.log(props)
   const currentPage = props?.page?.results[0];
   const pageBody = currentPage?.data?.body;
   const flexComponents = pageBody?.map((flex: any, key: string | number) => {
@@ -25,18 +26,18 @@ export default function Pages(props) {
           />
         );
       case 'hero_image':
-        return 'Hero_Image';
-        // return (
-        //   <HeroImage 
-        //     key={`hero-${flex.id}`}
-        //     images={flex.images}
-        //     overlayTitle={flex.OverlayTitle}
-        //     overlayCopy={flex.OverlayCopy}
-        //   />
-        // );
+        return (
+          <HeroImage 
+            key={`hero-${flex?.id}`}
+            image={flex?.primary?.image}
+            overlayTitle={flex?.primary?.heading}
+            overlayCopy={flex?.primary?.copy}
+          />
+        );
       case 'copy_block':
         return (
           <CopyBlock
+            isFirst={key === 1 ? true : false}
             key={key + '-' + flex.slice_type}
             title={flex?.primary?.heading[0].text}
             copy={flex?.primary?.copy}

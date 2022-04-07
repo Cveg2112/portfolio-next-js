@@ -15,10 +15,10 @@ export const SlowRedParticles = () => {
           events: {
             onClick: {
               enable: true,
-              mode: "push",
+              mode: "attract",
             },
             onHover: {
-              enable: true,
+              enable: false,
               mode: "attract",
             },
             resize: true,
@@ -78,7 +78,7 @@ export const SlowRedParticles = () => {
           size: {
             random: true,
             value: 4,
-          },
+          }
         },
         detectRetina: true,
       }}

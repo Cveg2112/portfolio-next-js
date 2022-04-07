@@ -3,6 +3,7 @@ import { TitleProps } from '../interface';
 // import { useSpring, animated } from 'react-spring';
 
 interface CopyBlockProps {
+  isFirst: boolean;
   title: string;
   copy?: {
     type: string;
@@ -12,11 +13,12 @@ interface CopyBlockProps {
 }
 
 export function CopyBlock(props: CopyBlockProps){
+  const isFirst = props.isFirst ? 'mt-24 lg:mt-28' : '';
   const paragraphs = props?.copy?.map((p) => {
     return <p>{p.text}</p>
   });
   return (
-    <section className="block">
+    <section className={`${isFirst} block`}>
       <div className="container m-auto p-8 border-l-2 border-primary text-secondary">
         <HeadingStyle 
           tag="h1"
