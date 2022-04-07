@@ -3,7 +3,6 @@ import { CopyBlock } from "../components/flex/copy-block";
 import { HomeBlock } from "../components/flex/home-block";
 import { Client } from '../prismicConfiguration';
 import { PageTransition } from "../components/HOC/page-transition";
-import { useRouter } from 'next/router';
 
 const Prismic = require('@prismicio/client');
 
