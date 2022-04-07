@@ -7,7 +7,7 @@ import { PageTransition } from "../components/HOC/page-transition";
 const Prismic = require('@prismicio/client');
 
 export default function Pages(props) {
-  // console.log(props)
+  console.log(props)
   const currentPage = props?.page?.results[0];
   const pageBody = currentPage?.data?.body;
   const flexComponents = pageBody?.map((flex: any, key: string | number) => {
@@ -28,6 +28,7 @@ export default function Pages(props) {
         return (
           <HeroImage 
             key={`hero-${flex?.id}`}
+            isFirst={key === 0 ? true : false}
             image={flex?.primary?.image}
             overlayTitle={flex?.primary?.heading}
             overlayCopy={flex?.primary?.copy}
@@ -36,8 +37,8 @@ export default function Pages(props) {
       case 'copy_block':
         return (
           <CopyBlock
-            isFirst={key === 1 ? true : false}
             key={key + '-' + flex.slice_type}
+            isFirst={key === 0 ? true : false}
             title={flex?.primary?.heading[0].text}
             copy={flex?.primary?.copy}
           />

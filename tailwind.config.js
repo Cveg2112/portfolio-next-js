@@ -9,7 +9,7 @@ const colors = {
 
 module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
     fontFamily: {
       'header': ['Vim'],
@@ -27,7 +27,18 @@ module.exports = {
       ...theme('colors'),
       ...colors 
     }),
-    extend: {},
+    maxWidth: {
+      'screen-3xl': '1920px'
+    },
+    extend: {
+      height: {
+        'screen-1/5': '20vh',
+        'screen-2/5': '40vh',
+        'screen-3/5': '60vh',
+        'screen-4/5': '80vh',
+        'screen-1/2': '50vh'
+      },
+    },
   },
   variants: {
     extend: {},
