@@ -27,10 +27,11 @@ module.exports = {
       ...theme('colors'),
       ...colors 
     }),
-    maxWidth: {
-      'screen-3xl': '1920px'
-    },
     extend: {
+      maxWidth: {
+        'screen-3xl': '1920px',
+        '8xl': '1440px'
+      },
       height: {
         'screen-1/5': '20vh',
         'screen-2/5': '40vh',

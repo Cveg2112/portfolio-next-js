@@ -1,6 +1,4 @@
 import { HeadingStyle } from '../util/heading-style';
-import { TitleProps } from '../interface';
-// import { useSpring, animated } from 'react-spring';
 
 interface CopyBlockProps {
   isFirst: boolean;
@@ -14,8 +12,8 @@ interface CopyBlockProps {
 
 export function CopyBlock(props: CopyBlockProps){
   const isFirst = props.isFirst ? 'mt-24 lg:mt-28' : 'my-8';
-  const paragraphs = props?.copy?.map((p) => {
-    return <p>{p.text}</p>
+  const paragraphs = props?.copy?.map((p, key) => {
+    return <p key={key}>{p.text}</p>
   });
   return (
     <section className={`${isFirst} mx-2 block`}>
